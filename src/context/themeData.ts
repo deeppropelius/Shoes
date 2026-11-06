@@ -1,7 +1,7 @@
-import redModelUrl from "../assets/model/red-shoes.glb";
-import blueModelUrl from "../assets/model/blue-shoes.glb";
-import greenModelUrl from "../assets/model/green-shoes.glb";
-import purpleModelUrl from "../assets/model/purple-shoes.glb";
+import redModelUrl from "../assets/model/red-shoes.glb?url";
+import blueModelUrl from "../assets/model/blue-shoes.glb?url";
+import greenModelUrl from "../assets/model/green-shoes.glb?url";
+import purpleModelUrl from "../assets/model/purple-shoes.glb?url";
 
 export type ThemeColor = "red" | "blue" | "green" | "purple";
 export type ThemeMode = "light" | "dark";
