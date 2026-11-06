@@ -34,12 +34,16 @@
 }
 
 /* ==========================================================================
-   STROKE DRAWING & ERASING ANIMATION (LOADER EFFECT)
+   SMOOTH INDIVIDUAL LETTER STROKE DRAWING & ERASING (LOADER EFFECT)
+   Each letter draws in smoothly, holds, and smoothly erases with staggered timing.
    ========================================================================== */
-@keyframes strokeDrawAndErase {
+@keyframes letterStrokeDrawAndErase {
     0% {
-        stroke-dashoffset: 1400;
-        opacity: 0.15;
+        stroke-dashoffset: 750;
+        opacity: 0;
+    }
+    12% {
+        opacity: 1;
     }
     40% {
         stroke-dashoffset: 0;
@@ -49,20 +53,25 @@
         stroke-dashoffset: 0;
         opacity: 1;
     }
+    88% {
+        opacity: 1;
+    }
     100% {
-        stroke-dashoffset: -1400;
-        opacity: 0.15;
+        stroke-dashoffset: -750;
+        opacity: 0;
     }
 }
 
-.animate-stroke-loader {
-    stroke-dasharray: 1400;
-    stroke-dashoffset: 1400;
-    animation: strokeDrawAndErase 3s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+.animate-letter-loader {
+    stroke-dasharray: 750;
+    stroke-dashoffset: 750;
+    animation: letterStrokeDrawAndErase var(--letter-duration, 2.8s) cubic-bezier(0.42, 0, 0.28, 1) infinite;
+    animation-delay: var(--letter-delay, 0s);
+    will-change: stroke-dashoffset, opacity;
 }
 
 /* ==========================================================================
-   LIGHT MODE: Shoe Color in CENTER -> White OUTSIDE
+   LIGHT MODE: Shoe Color in CENTER -> White OUTSIDE (as in user diagram)
    ========================================================================== */
 :root {
     --radius: 0.75rem;
@@ -87,7 +96,7 @@
     --primary: #AE1125;
     --primary-foreground: #FFFFFF;
     --ring: #AE1125;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #AE1125 0%, #D8263D 25%, #EB6072 48%, #FAD2D8 70%, #FFFFFF 90%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #AE1125 0%, #D8263D 20%, #E84D62 38%, #F8B3BD 60%, #FFFFFF 84%, #FFFFFF 100%);
     --theme-text-glow: rgba(174, 17, 37, 0.45);
     --theme-nav-glass: rgba(255, 255, 255, 0.65);
 }
@@ -96,7 +105,7 @@
     --primary: #AE1125;
     --primary-foreground: #FFFFFF;
     --ring: #AE1125;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #AE1125 0%, #D8263D 25%, #EB6072 48%, #FAD2D8 70%, #FFFFFF 90%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #AE1125 0%, #D8263D 20%, #E84D62 38%, #F8B3BD 60%, #FFFFFF 84%, #FFFFFF 100%);
     --theme-text-glow: rgba(174, 17, 37, 0.45);
 }
 
@@ -104,7 +113,7 @@
     --primary: #1162AE;
     --primary-foreground: #FFFFFF;
     --ring: #1162AE;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #1162AE 0%, #1D75C9 25%, #4C9DF0 48%, #CCE4FC 70%, #FFFFFF 90%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #1162AE 0%, #1D75C9 20%, #4697EC 38%, #B6D9FD 60%, #FFFFFF 84%, #FFFFFF 100%);
     --theme-text-glow: rgba(17, 98, 174, 0.45);
 }
 
@@ -112,7 +121,7 @@
     --primary: #2AAE11;
     --primary-foreground: #FFFFFF;
     --ring: #2AAE11;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #2AAE11 0%, #35C718 25%, #5FD744 48%, #D2F7CB 70%, #FFFFFF 90%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #2AAE11 0%, #35C718 20%, #5fe044 38%, #BEF8B1 60%, #FFFFFF 84%, #FFFFFF 100%);
     --theme-text-glow: rgba(42, 174, 17, 0.45);
 }
 
@@ -120,7 +129,7 @@
     --primary: #9A11AE;
     --primary-foreground: #FFFFFF;
     --ring: #9A11AE;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #9A11AE 0%, #B41CCD 25%, #CE4DE4 48%, #F5CEFE 70%, #FFFFFF 90%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #9A11AE 0%, #B41CCD 20%, #ce49e4 38%, #F3BCFB 60%, #FFFFFF 84%, #FFFFFF 100%);
     --theme-text-glow: rgba(154, 17, 174, 0.45);
 }
 
@@ -149,7 +158,7 @@
     --primary: #AE1125;
     --primary-foreground: #FFFFFF;
     --ring: #AE1125;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #120406 28%, #480610 52%, #8E0E1E 75%, #AE1125 100%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #060709 0%, #0d0406 20%, #38060f 42%, #7b0c1b 65%, #AE1125 88%, #d61c34 100%);
     --theme-text-glow: rgba(174, 17, 37, 0.65);
 }
 
@@ -157,7 +166,7 @@
     --primary: #AE1125;
     --primary-foreground: #FFFFFF;
     --ring: #AE1125;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #120406 28%, #480610 52%, #8E0E1E 75%, #AE1125 100%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #060709 0%, #0d0406 20%, #38060f 42%, #7b0c1b 65%, #AE1125 88%, #d61c34 100%);
     --theme-text-glow: rgba(174, 17, 37, 0.65);
 }
 
@@ -165,7 +174,7 @@
     --primary: #1162AE;
     --primary-foreground: #FFFFFF;
     --ring: #1162AE;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #040E1A 28%, #093460 52%, #0E5294 75%, #1162AE 100%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #060709 0%, #030c17 20%, #08294d 42%, #0d4a84 65%, #1162AE 88%, #207ed8 100%);
     --theme-text-glow: rgba(17, 98, 174, 0.65);
 }
 
@@ -173,7 +182,7 @@
     --primary: #2AAE11;
     --primary-foreground: #FFFFFF;
     --ring: #2AAE11;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #041405 28%, #0E4B0B 52%, #1B7F10 75%, #2AAE11 100%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #060709 0%, #041205 20%, #0d3d0a 42%, #186b12 65%, #2AAE11 88%, #3cdb1b 100%);
     --theme-text-glow: rgba(42, 174, 17, 0.65);
 }
 
@@ -181,6 +190,6 @@
     --primary: #9A11AE;
     --primary-foreground: #FFFFFF;
     --ring: #9A11AE;
-    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #120314 28%, #400949 52%, #740E83 75%, #9A11AE 100%);
+    --theme-gradient: radial-gradient(circle at 50% 50%, #060709 0%, #100313 20%, #36073d 42%, #660d73 65%, #9A11AE 88%, #be1fd6 100%);
     --theme-text-glow: rgba(154, 17, 174, 0.65);
 }

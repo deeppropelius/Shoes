@@ -1,5 +1,23 @@
+import React from "react";
 import { useProgress } from "@react-three/drei";
 import { useTheme } from "../../../context/useTheme";
+
+interface LetterConfig {
+  char: string;
+  delay: string;
+  duration: string;
+}
+
+const LETTERS: LetterConfig[] = [
+  { char: "S", delay: "0.00s", duration: "2.70s" },
+  { char: "N", delay: "0.22s", duration: "2.85s" },
+  { char: "E", delay: "0.42s", duration: "2.65s" },
+  { char: "A", delay: "0.64s", duration: "2.95s" },
+  { char: "K", delay: "0.84s", duration: "2.75s" },
+  { char: "E", delay: "1.04s", duration: "2.60s" },
+  { char: "R", delay: "1.24s", duration: "2.90s" },
+  { char: "S", delay: "1.44s", duration: "2.70s" },
+];
 
 function Text() {
   const { currentTheme, mode } = useTheme();
@@ -24,9 +42,7 @@ function Text() {
           y="50%"
           textAnchor="middle"
           dominantBaseline="central"
-          className={`uppercase font-bold tracking-[0.06em] origin-center scale-x-[1.4] scale-y-[1.8] sm:scale-x-[2.0] sm:scale-y-[2.3] md:scale-x-[2.5] md:scale-y-[2.6] lg:scale-x-[2.8] lg:scale-y-[2.8] transition-all duration-700 ${
-            isLoading ? "animate-stroke-loader" : ""
-          }`}
+          className="uppercase font-bold tracking-[0.06em] origin-center scale-x-[1.4] scale-y-[1.8] sm:scale-x-[2.0] sm:scale-y-[2.3] md:scale-x-[2.5] md:scale-y-[2.6] lg:scale-x-[2.8] lg:scale-y-[2.8] transition-all duration-700"
           style={{
             fontFamily: "MyFont",
             fontSize: "135px",
@@ -38,10 +54,30 @@ function Text() {
             stroke: strokeColor,
             strokeWidth: "2.5px",
             filter: dropShadowFilter,
-            transition: "stroke-dashoffset 0.8s ease, fill 0.8s ease, filter 0.7s ease",
+            transition: "fill 0.8s ease, filter 0.7s ease",
           }}
         >
-          Sneakers
+          {LETTERS.map((letter, index) => (
+            <tspan
+              key={index}
+              className={isLoading ? "animate-letter-loader" : ""}
+              style={
+                isLoading
+                  ? ({
+                      "--letter-delay": letter.delay,
+                      "--letter-duration": letter.duration,
+                    } as React.CSSProperties)
+                  : {
+                      strokeDasharray: "none",
+                      strokeDashoffset: 0,
+                      opacity: 1,
+                      transition: "stroke-dashoffset 0.8s ease, opacity 0.8s ease",
+                    }
+              }
+            >
+              {letter.char}
+            </tspan>
+          ))}
         </text>
       </svg>
 

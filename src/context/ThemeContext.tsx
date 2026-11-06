@@ -4,14 +4,26 @@ import { ThemeContext } from "./ThemeContextDefinition";
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<ThemeColor>(() => {
-    const saved = localStorage.getItem("tweakcn-theme");
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const queryTheme = params.get("theme") as ThemeColor;
+      if (queryTheme === "red" || queryTheme === "blue" || queryTheme === "green" || queryTheme === "purple") {
+        return queryTheme;
+      }
+    }
+    const saved = typeof window !== "undefined" ? localStorage.getItem("tweakcn-theme") : null;
     return (saved === "blue" || saved === "green" || saved === "purple") ? saved : "red";
   });
 
   const [mode, setModeState] = useState<ThemeMode>(() => {
-    const saved = localStorage.getItem("tweakcn-mode");
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const queryMode = params.get("mode") as ThemeMode;
+      if (queryMode === "light" || queryMode === "dark") return queryMode;
+    }
+    const saved = typeof window !== "undefined" ? localStorage.getItem("tweakcn-mode") : null;
     if (saved === "light" || saved === "dark") return saved;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   });
 
   const setTheme = (newTheme: ThemeColor) => {
