@@ -92,7 +92,7 @@ export default function Model() {
         </Suspense>
 
         <OrbitControls
-          enableZoom={true}
+          enableZoom={false}
           enablePan={false}
           autoRotate
           autoRotateSpeed={1.5}
