@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'MyFont';
+    src: url('./assets/Primate-BF6a923f7600145.otf') format('opentype');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@theme {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ==========================================================================
+   LIGHT MODE: Shoe Color in CENTER -> White OUTSIDE
+   ========================================================================== */
+:root {
+    --radius: 0.75rem;
+    --background: #FFFFFF;
+    --foreground: #111827;
+    --card: rgba(255, 255, 255, 0.85);
+    --card-foreground: #111827;
+    --popover: #FFFFFF;
+    --popover-foreground: #111827;
+    --secondary: #F3F4F6;
+    --secondary-foreground: #111827;
+    --muted: #F3F4F6;
+    --muted-foreground: #6B7280;
+    --accent: #F9FAFB;
+    --accent-foreground: #111827;
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+    --border: rgba(0, 0, 0, 0.08);
+    --input: rgba(0, 0, 0, 0.08);
+
+    /* Default Light Red */
+    --primary: #AE1125;
+    --primary-foreground: #FFFFFF;
+    --ring: #AE1125;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #AE1125 0%, #D8263D 25%, #EB6072 48%, #FAD2D8 70%, #FFFFFF 90%);
+    --theme-text-glow: rgba(174, 17, 37, 0.45);
+    --theme-nav-glass: rgba(255, 255, 255, 0.65);
+}
+
+[data-theme="red"] {
+    --primary: #AE1125;
+    --primary-foreground: #FFFFFF;
+    --ring: #AE1125;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #AE1125 0%, #D8263D 25%, #EB6072 48%, #FAD2D8 70%, #FFFFFF 90%);
+    --theme-text-glow: rgba(174, 17, 37, 0.45);
+}
+
+[data-theme="blue"] {
+    --primary: #1162AE;
+    --primary-foreground: #FFFFFF;
+    --ring: #1162AE;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #1162AE 0%, #1D75C9 25%, #4C9DF0 48%, #CCE4FC 70%, #FFFFFF 90%);
+    --theme-text-glow: rgba(17, 98, 174, 0.45);
+}
+
+[data-theme="green"] {
+    --primary: #2AAE11;
+    --primary-foreground: #FFFFFF;
+    --ring: #2AAE11;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #2AAE11 0%, #35C718 25%, #5FD744 48%, #D2F7CB 70%, #FFFFFF 90%);
+    --theme-text-glow: rgba(42, 174, 17, 0.45);
+}
+
+[data-theme="purple"] {
+    --primary: #9A11AE;
+    --primary-foreground: #FFFFFF;
+    --ring: #9A11AE;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #9A11AE 0%, #B41CCD 25%, #CE4DE4 48%, #F5CEFE 70%, #FFFFFF 90%);
+    --theme-text-glow: rgba(154, 17, 174, 0.45);
+}
+
+/* ==========================================================================
+   DARK MODE: Dark/Black in CENTER -> Shoe Color OUTSIDE (in circular gradient)
+   ========================================================================== */
+.dark {
+    --background: #060709;
+    --foreground: #F9FAFB;
+    --card: rgba(18, 18, 20, 0.75);
+    --card-foreground: #F9FAFB;
+    --popover: #121214;
+    --popover-foreground: #F9FAFB;
+    --secondary: #1F2937;
+    --secondary-foreground: #F9FAFB;
+    --muted: #1F2937;
+    --muted-foreground: #9CA3AF;
+    --accent: #111827;
+    --accent-foreground: #F9FAFB;
+    --destructive: #7F1D1D;
+    --destructive-foreground: #F9FAFB;
+    --border: rgba(255, 255, 255, 0.1);
+    --input: rgba(255, 255, 255, 0.1);
+
+    /* Default Dark Red */
+    --primary: #AE1125;
+    --primary-foreground: #FFFFFF;
+    --ring: #AE1125;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #120406 28%, #480610 52%, #8E0E1E 75%, #AE1125 100%);
+    --theme-text-glow: rgba(174, 17, 37, 0.65);
+}
+
+.dark[data-theme="red"] {
+    --primary: #AE1125;
+    --primary-foreground: #FFFFFF;
+    --ring: #AE1125;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #120406 28%, #480610 52%, #8E0E1E 75%, #AE1125 100%);
+    --theme-text-glow: rgba(174, 17, 37, 0.65);
+}
+
+.dark[data-theme="blue"] {
+    --primary: #1162AE;
+    --primary-foreground: #FFFFFF;
+    --ring: #1162AE;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #040E1A 28%, #093460 52%, #0E5294 75%, #1162AE 100%);
+    --theme-text-glow: rgba(17, 98, 174, 0.65);
+}
+
+.dark[data-theme="green"] {
+    --primary: #2AAE11;
+    --primary-foreground: #FFFFFF;
+    --ring: #2AAE11;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #041405 28%, #0E4B0B 52%, #1B7F10 75%, #2AAE11 100%);
+    --theme-text-glow: rgba(42, 174, 17, 0.65);
+}
+
+.dark[data-theme="purple"] {
+    --primary: #9A11AE;
+    --primary-foreground: #FFFFFF;
+    --ring: #9A11AE;
+    --theme-gradient: radial-gradient(circle at 50% 50%, #070709 0%, #120314 28%, #400949 52%, #740E83 75%, #9A11AE 100%);
+    --theme-text-glow: rgba(154, 17, 174, 0.65);
+}
