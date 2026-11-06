@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -44,6 +44,18 @@ function Shoe({ modelUrl }: { modelUrl: string }) {
 
 export default function Model() {
   const { currentTheme } = useTheme();
+
+  // Progressively preload alternative colorways in background AFTER initial model is displayed
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const otherThemes = Object.values(THEMES).filter((t) => t.id !== currentTheme.id);
+      otherThemes.forEach((t) => {
+        useGLTF.preload(t.modelUrl);
+      });
+    }, 1800);
+
+    return () => clearTimeout(timer);
+  }, [currentTheme.id]);
 
   return (
     <div className="w-full h-full">
@@ -101,9 +113,3 @@ export default function Model() {
     </div>
   );
 }
-
-// Preload all 4 theme models for instantaneous switching
-useGLTF.preload(THEMES.red.modelUrl);
-useGLTF.preload(THEMES.blue.modelUrl);
-useGLTF.preload(THEMES.green.modelUrl);
-useGLTF.preload(THEMES.purple.modelUrl);
