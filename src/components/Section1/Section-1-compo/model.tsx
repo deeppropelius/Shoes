@@ -3,8 +3,6 @@ import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
   useGLTF,
-  useProgress,
-  Html,
   ContactShadows,
   Center,
   Environment,
@@ -12,20 +10,6 @@ import {
 } from "@react-three/drei";
 import { THEMES } from "../../../context/themeData";
 import { useTheme } from "../../../context/useTheme";
-
-function Loader() {
-  const { progress } = useProgress();
-  return (
-    <Html center>
-      <div className="flex flex-col items-center justify-center pointer-events-none select-none">
-        <div className="w-10 h-10 border-2 border-foreground/15 border-t-primary rounded-full animate-spin mb-3" />
-        <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-foreground/70 whitespace-nowrap">
-          {progress < 100 ? `Loading Atelier... ${progress.toFixed(0)}%` : "Rendering..."}
-        </span>
-      </div>
-    </Html>
-  );
-}
 
 function Shoe({ modelUrl }: { modelUrl: string }) {
   const { scene } = useGLTF(modelUrl);
@@ -80,7 +64,7 @@ export default function Model() {
         {/* Warm Ground Bounce Light */}
         <directionalLight position={[0, -4, 3]} intensity={0.5} />
 
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={null}>
           <Shoe key={currentTheme.id} modelUrl={currentTheme.modelUrl} />
 
           {/* Luxury Studio Environment Reflections */}

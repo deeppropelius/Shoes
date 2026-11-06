@@ -80,14 +80,6 @@ function Text() {
           ))}
         </text>
       </svg>
-
-      {/* Subtle Luxury Loading Indicator pill while model loads in background */}
-      {isLoading && (
-        <div className="absolute top-[66%] left-1/2 -translate-x-1/2 flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/40 dark:bg-black/60 backdrop-blur-md border border-white/20 text-[10px] tracking-[0.25em] font-semibold text-white uppercase shadow-lg animate-pulse transition-opacity duration-500">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-ping" />
-          <span>Atelier Loading • {progress.toFixed(0)}%</span>
-        </div>
-      )}
     </div>
   );
 }
