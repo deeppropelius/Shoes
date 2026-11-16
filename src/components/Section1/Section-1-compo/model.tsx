@@ -45,6 +45,12 @@ export default function Model() {
     <div className="w-full h-full">
       <Canvas
         className="w-full h-full"
+        dpr={[1, 2]}
+        gl={{
+          antialias: true,
+          powerPreference: "high-performance",
+          alpha: true,
+        }}
         camera={{
           position: [0, 1.4, 4.8],
           fov: 45,
@@ -87,11 +93,17 @@ export default function Model() {
           />
         </Suspense>
 
+        {/* Silky smooth damped OrbitControls with physics-based inertia */}
         <OrbitControls
           enableZoom={false}
           enablePan={false}
+          enableDamping={true}
+          dampingFactor={0.06}
+          rotateSpeed={0.75}
           autoRotate
-          autoRotateSpeed={1.5}
+          autoRotateSpeed={0.8}
+          minPolarAngle={Math.PI / 4}
+          maxPolarAngle={Math.PI / 1.8}
         />
       </Canvas>
     </div>

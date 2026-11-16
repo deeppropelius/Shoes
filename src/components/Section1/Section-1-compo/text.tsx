@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
 import { useTheme } from "../../../context/useTheme";
 
@@ -21,9 +21,18 @@ const LETTERS: LetterConfig[] = [
 
 function Text() {
   const { currentTheme, mode } = useTheme();
-  const { active, progress } = useProgress();
+  const { progress } = useProgress();
+  const [initialLoaded, setInitialLoaded] = useState(false);
+
+  useEffect(() => {
+    if (progress === 100) {
+      setInitialLoaded(true);
+    }
+  }, [progress]);
+
   const isLight = mode === "light";
-  const isLoading = active || progress < 100;
+  // Only show the stroke loader on initial page load, not during background preloading
+  const isLoading = !initialLoaded;
 
   const strokeColor = isLight ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.9)";
   const dropShadowFilter = isLight

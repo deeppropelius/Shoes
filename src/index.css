@@ -162,7 +162,8 @@
     --theme-text-glow: rgba(174, 17, 37, 0.65);
 }
 
-.dark[data-theme="red"] {
+.dark[data-theme="red"],
+.dark [data-theme="red"] {
     --primary: #AE1125;
     --primary-foreground: #FFFFFF;
     --ring: #AE1125;
@@ -170,7 +171,8 @@
     --theme-text-glow: rgba(174, 17, 37, 0.65);
 }
 
-.dark[data-theme="blue"] {
+.dark[data-theme="blue"],
+.dark [data-theme="blue"] {
     --primary: #1162AE;
     --primary-foreground: #FFFFFF;
     --ring: #1162AE;
@@ -178,7 +180,8 @@
     --theme-text-glow: rgba(17, 98, 174, 0.65);
 }
 
-.dark[data-theme="green"] {
+.dark[data-theme="green"],
+.dark [data-theme="green"] {
     --primary: #2AAE11;
     --primary-foreground: #FFFFFF;
     --ring: #2AAE11;
@@ -186,7 +189,8 @@
     --theme-text-glow: rgba(42, 174, 17, 0.65);
 }
 
-.dark[data-theme="purple"] {
+.dark[data-theme="purple"],
+.dark [data-theme="purple"] {
     --primary: #9A11AE;
     --primary-foreground: #FFFFFF;
     --ring: #9A11AE;
